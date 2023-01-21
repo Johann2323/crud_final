@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/users");
+    const result = await axios.get("http://localhost:8080/api/cursos");
     setUsers(result.data);
   };
 
@@ -40,9 +40,9 @@ export default function Home() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
+                <td>{user.titulo}</td>
+                <td>{user.autor}</td>
+                <td>{user.descripcion}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
