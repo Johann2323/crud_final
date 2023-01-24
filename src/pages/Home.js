@@ -12,25 +12,27 @@ export default function Home() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3000/api/cursos");
+    const result = await axios.get("http://localhost:8080/api/cursos/getlibros");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/user/${id}`);
+    await axios.delete(`http://localhost:8080/api/cursos/eliminarLibro/${id}`);
     loadUsers();
   };
 
   return (
-    <div className="container">
+    <div style={{
+      backgroundImage: `url("https://img.freepik.com/vector-premium/fondo-geometrico-azul-claro_1053-684.jpg?w=2000g")`, backgroundRepeat:'no-repeat',
+     height:'600px'}}>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
             <tr>
+            <th scope="col">ID</th>
               <th scope="col">Titulo</th>
               <th scope="col">Autor</th>
               <th scope="col">Descripcion</th>
-              <th scope="col">Email</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -44,12 +46,6 @@ export default function Home() {
                 <td>{user.autor}</td>
                 <td>{user.descripcion}</td>
                 <td>
-                  <Link
-                    className="btn btn-primary mx-2"
-                    to={`/viewuser/${user.id}`}
-                  >
-                    View
-                  </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
                     to={`/edituser/${user.id}`}

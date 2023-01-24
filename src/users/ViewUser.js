@@ -16,15 +16,17 @@ export default function ViewUser() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get("http://localhost:8080/api/cursos");
+    const result = await axios.get("http://localhost:8080/api/cursos/getlibros/${id}");
     setUser(result.data);
   };
 
   return (
-    <div className="container">
+    <div style={{
+      backgroundImage: `url("https://img.freepik.com/vector-premium/fondo-geometrico-azul-claro_1053-684.jpg?w=2000g")`, backgroundRepeat:'no-repeat',  backgroundAttachment: 'fixed'
+    ,height:'600px'}}>
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">User Details</h2>
+          <h2 className="text-center m-4">Detalles del Libro</h2>
 
           <div className="card">
             <div className="card-header">
@@ -46,7 +48,7 @@ export default function ViewUser() {
             </div>
           </div>
           <Link className="btn btn-primary my-2" to={"/"}>
-            Back to Home
+            Regresar al Inicio
           </Link>
         </div>
       </div>

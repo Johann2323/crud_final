@@ -36,10 +36,12 @@ export default function EditUser() {
   };
 
   return (
-    <div className="container">
+    <div style={{
+      backgroundImage: `url("https://img.freepik.com/vector-premium/fondo-geometrico-azul-claro_1053-684.jpg?w=2000g")`, backgroundRepeat:'no-repeat',  backgroundAttachment: 'fixed'
+    ,height:'600px'}}>
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Edit User</h2>
+          <h2 className="text-center m-4">Editar Libro</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">

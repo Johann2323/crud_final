@@ -22,10 +22,7 @@ export default function Navbar() {
           </button>
 
           <Link className="btn btn-outline-light" to="/adduser">
-            Add User
-          </Link>
-          <Link className="btn btn-outline-light" to="/edituser">
-            Modificar
+            Guardar Libro
           </Link>
         </div>
       </nav>
