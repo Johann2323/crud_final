@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/api/cursos");
+    const result = await axios.get("http://localhost:3000/api/cursos");
     setUsers(result.data);
   };
 
@@ -27,9 +27,9 @@ export default function Home() {
         <table className="table border shadow">
           <thead>
             <tr>
-              <th scope="col">S.N</th>
-              <th scope="col">Name</th>
-              <th scope="col">Username</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Descripcion</th>
               <th scope="col">Email</th>
               <th scope="col">Action</th>
             </tr>
