@@ -33,6 +33,7 @@ export default function Home() {
               <th scope="col">Titulo</th>
               <th scope="col">Autor</th>
               <th scope="col">Descripcion</th>
+              <th scope="col">PDF</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@ export default function Home() {
                 <td>{user.titulo}</td>
                 <td>{user.autor}</td>
                 <td>{user.descripcion}</td>
+                <td>{user.imagenPhat}</td>
                 <td>
                   <Link
                     className="btn btn-outline-primary mx-2"

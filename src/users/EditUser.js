@@ -4,16 +4,20 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function EditUser() {
   let navigate = useNavigate();
+  
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const { id } = useParams();
 
   const [user, setUser] = useState({
-    name: "",
-    username: "",
-    email: "",
+    titulo: "",
+    autor: "",
+    descripcion: "",
+    imagenPhat:"",
+    imagenURL:""
   });
 
-  const { name, username, email } = user;
+  const { titulo, autor, descripcion, imagenPhat} = user;
 
   const onInputChange = (e) => {
     console.log(e.target.value);
@@ -26,12 +30,19 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/api/cursos/${id}`, user);
+    console.log(e.target.value);
+    await axios.put(`http://localhost:8080/api/cursos/editarLibro/${id}`,user)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
     navigate("/");
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/user/${id}`);
+    const result = await axios.get(`http://localhost:8080/api/cursos/buscarid/${id}`);
     setUser(result.data);
   };
 
@@ -46,17 +57,19 @@ export default function EditUser() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="Name" className="form-label">Titulo</label>
-              <input type={"text"} className="form-control" placeholder="Aquí aparecera el título" name="name" value={name} onChange={(e) => onInputChange(e)} />
+              <input type={"text"} className="form-control" placeholder={titulo} value={titulo} name="titulo"  onChange={(e) => onInputChange(e)} />
             </div>
 
             <div className="mb-3">
               <label htmlFor="Username" className="form-label">Autor</label>
-              <input type={"text"} className="form-control" placeholder="Aquí aparecera el autor" name="username" value={username} onChange={(e) => onInputChange(e)}/>
+              <input type={"text"} className="form-control" placeholder={autor} value={autor} name="autor" onChange={(e) => onInputChange(e)}/>
             </div>
 
             <div className="mb-3">
               <label htmlFor="Email" className="form-label">Descripción</label>
-              <input type={"text"} className="form-control" placeholder="Aquí aparecera la descripción" name="email" value={email} onChange={(e) => onInputChange(e)}/>
+              <input type={"text"} className="form-control" placeholder={descripcion} value={descripcion} name="descripcion"  onChange={(e) => onInputChange(e)}/>
+              <label htmlFor="Email" className="form-label">PDF</label>
+              <input type={"text"} className="form-control" value={imagenPhat}   onChange={(e) => onInputChange(e)}/>
             </div>
 
             <button type="submit" className="btn btn-outline-primary">Guardar </button> 

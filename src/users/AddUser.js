@@ -9,21 +9,26 @@ export default function AddUser() {
     titulo: "",
     autor: "",
     descripcion: "",
-    imagenPhat:"",
-    imagenURL:""
+    imagenPhat: "",
+    imagenURL: ""
   });
-  
+  var validar  = false;
 
-  const { titulo, autor, descripcion } = user;
+  const { titulo, autor, descripcion, imagenPhat, imagenURL } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post("http://localhost:8080/api/cursos/crearlibro", user);
-    navigate("/");
+    console.log(validar);
+    if (validar == true) {
+      e.preventDefault();
+      await axios.post("http://localhost:8080/api/cursos/crearlibro", user);
+      navigate("/");
+    } else {
+      console.log("Error");
+    }
   };
 
   const [archivos, setArchivos] = useState(null)
@@ -33,7 +38,7 @@ export default function AddUser() {
 
   }
   const insertarArchivos = async () => {
-
+    validar = true;
     const f = new FormData();
 
     for (let index = 0; index < archivos.length; index++) {
@@ -41,14 +46,14 @@ export default function AddUser() {
 
     }
 
-    
+
     await axios.post("http://localhost:8080/api/assets/upload", f, { headers: { 'Content-Type': 'multipart/form-data' } })
 
       .then(response => {
         console.log(response.data);
         console.log(response.data.key);
         user.imagenPhat = response.data.key;
-        
+
       }).catch(error => {
         console.log(error);
       })
@@ -56,9 +61,10 @@ export default function AddUser() {
 
 
   return (
-    <div  style={{
-      backgroundImage: `url("https://img.freepik.com/vector-premium/fondo-geometrico-azul-claro_1053-684.jpg?w=2000g")`, backgroundRepeat:'no-repeat',  backgroundAttachment: 'fixed'
-      ,height:'600px'}}>
+    <div style={{
+      backgroundImage: `url("https://img.freepik.com/vector-premium/fondo-geometrico-azul-claro_1053-684.jpg?w=2000g")`, backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed'
+      , height: '600px'
+    }}>
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Registrar Libro</h2>
@@ -104,12 +110,13 @@ export default function AddUser() {
               />
             </div>
             <input type="file" id="subir" name="PDF" onChange={(e) => subirArchivos(e.target.files)} /><br></br> <br></br>
-            <button type="submit" className="btn btn-outline-primary" variant="success" onClick={() => insertarArchivos()}>Agregar Libro</button>
+            <button type="button" className="btn btn-outline-primary" variant="success" onClick={() => insertarArchivos()}>Agregar Archivo</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" className="btn btn-outline-primary">Guardar</button>
             <Link className="btn btn-outline-danger mx-2" to="/">
               Cancel
             </Link>
           </form>
-          
+
         </div>
       </div>
     </div>
