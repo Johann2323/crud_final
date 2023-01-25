@@ -17,8 +17,11 @@ export default function Home() {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/api/cursos/eliminarLibro/${id}`);
-    loadUsers();
+    if (window.confirm('Esta seguro de eliminar este libro?')) {
+      await axios.delete(`http://localhost:8080/api/cursos/eliminarLibro/${id}`);
+      loadUsers();
+    }
+    
   };
 
   return (
@@ -46,7 +49,8 @@ export default function Home() {
                 <td>{user.titulo}</td>
                 <td>{user.autor}</td>
                 <td>{user.descripcion}</td>
-                <td>{user.imagenPhat}</td>
+                <td>{user.imagenURL}</td>
+               
                 <td>
                   <Link
                     className="btn btn-outline-primary mx-2"

@@ -53,6 +53,7 @@ export default function AddUser() {
         console.log(response.data);
         console.log(response.data.key);
         user.imagenPhat = response.data.key;
+        window.alert("El archivo se ha agregado correctamente")
 
       }).catch(error => {
         console.log(error);

@@ -17,7 +17,7 @@ export default function EditUser() {
     imagenURL:""
   });
 
-  const { titulo, autor, descripcion, imagenPhat} = user;
+  const { titulo, autor, descripcion, imagenPhat,imagenURL} = user;
 
   const onInputChange = (e) => {
     console.log(e.target.value);
@@ -70,6 +70,8 @@ export default function EditUser() {
               <input type={"text"} className="form-control" placeholder={descripcion} value={descripcion} name="descripcion"  onChange={(e) => onInputChange(e)}/>
               <label htmlFor="Email" className="form-label">PDF</label>
               <input type={"text"} className="form-control" value={imagenPhat}   onChange={(e) => onInputChange(e)}/>
+              <label htmlFor="Email" className="form-label">PDF URL</label>
+              <input type={"text"} className="form-control" value={imagenURL}   onChange={(e) => onInputChange(e)}/>
             </div>
 
             <button type="submit" className="btn btn-outline-primary">Guardar </button> 
