@@ -27,7 +27,7 @@ export default function AddUser() {
       await axios.post("http://localhost:8080/api/cursos/crearlibro", user);
       navigate("/");
     } else {
-      console.log("Error");
+      alert("Agregue un archivo primero")
     }
   };
 
