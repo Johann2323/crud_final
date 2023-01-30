@@ -44,6 +44,7 @@ export default function EditUser() {
   const loadUser = async () => {
     const result = await axios.get(`http://localhost:8080/api/cursos/buscarid/${id}`);
     setUser(result.data);
+    console.log(result.data)
   };
 
   return (
@@ -70,8 +71,6 @@ export default function EditUser() {
               <input type={"text"} className="form-control" placeholder={descripcion} value={descripcion} name="descripcion"  onChange={(e) => onInputChange(e)}/>
               <label htmlFor="Email" className="form-label">PDF</label>
               <input type={"text"} className="form-control" value={imagenPhat}   onChange={(e) => onInputChange(e)}/>
-              <label htmlFor="Email" className="form-label">PDF URL</label>
-              <input type={"text"} className="form-control" value={imagenURL}   onChange={(e) => onInputChange(e)}/>
             </div>
 
             <button type="submit" className="btn btn-outline-primary">Guardar </button> 
